@@ -1,16 +1,26 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    /*
+    * 인터페이스도 구체적인것도 의존하는 경우임 DIP위반
+    * 예를들어 정책을 fix -> rate로 바꾸는 순간 
+    * 의존관계로인해 OrderServiceImpl의 소스코드도 함께 변경되어야 함
+    * OCP위반
+    * */
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
