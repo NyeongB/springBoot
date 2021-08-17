@@ -1,3 +1,4 @@
 배열이나 리스트있을때
 iter + tab : for문 자동생성
 alt + enter : static import로 변경
+ctrl + shift + enter : 문자열 값넣다가 밖으로 넘어가기
