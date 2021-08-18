@@ -2,3 +2,4 @@
 iter + tab : for문 자동생성
 alt + enter : static import로 변경
 ctrl + shift + enter : 문자열 값넣다가 밖으로 넘어가기
+alt + enter : jUnit 테스트 만들어줌
