@@ -12,6 +12,7 @@ import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// Configuration 없으면 싱글톤 보장 X 순수한 AppConfig.class가 보장됨 CGLIB (X)
 @Configuration
 public class AppConfig {
 
