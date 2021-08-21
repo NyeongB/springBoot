@@ -1,38 +1,29 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor // 생성자까지 대신함 롬복이 제공
 public class OrderServiceImpl implements OrderService{
 
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
     @Autowired
-    public void setMemberRepository(MemberRepository memberRepository){
-        System.out.println("memberRepository1 = " + memberRepository);
-        this.memberRepository = memberRepository;
-    }
-    @Autowired
-    //@Autowired(required = false) 선택적으로 사용 가능
-    public void setDiscountPolicy(DiscountPolicy discountPolicy){
-        System.out.println("discountPolicy1 = " + discountPolicy);
-        this.discountPolicy = discountPolicy;
-    }
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy  DiscountPolicy discountPolicy) {
 
-    @Autowired // 하나도없으면 생성자 //1번 호출 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("memberRepository2 = " + memberRepository);
-        System.out.println("discountPolicy2 = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
     
-    
+
     
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
@@ -51,6 +42,7 @@ public class OrderServiceImpl implements OrderService{
         // 주문쪽 까지 갈필요가없음, 만약 잘못됐으면 할인을 오더 서비스에서 고쳐야되고 하는 문제가 생김
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+
 
     }
     // 테스트 용도
