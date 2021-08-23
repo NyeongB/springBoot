@@ -19,7 +19,9 @@ public class BeanLifeCycleTest {
 
     @Configuration
     static class LifeCycleConfig{
-        @Bean(initMethod = "init", destroyMethod = "close") // 클로즈 공백으로하면 아무것도 안함 destroyMethod = ""
+
+        //@Bean(initMethod = "init", destroyMethod = "close") // 클로즈 공백으로하면 아무것도 안함 destroyMethod = ""
+        @Bean
         public NetworkClient networkClient(){
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
