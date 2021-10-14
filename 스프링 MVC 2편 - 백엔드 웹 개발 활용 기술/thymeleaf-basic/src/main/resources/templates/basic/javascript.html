@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
  <title>Title</title>
 </head>
 <body>
-<!-- 자바스크립트 인라인 사용 전 -->
+자바스크립트 인라인 사용 전
 <script>
  var username = [[${user.username}]];
  var age = [[${user.age}]];
@@ -14,7 +14,7 @@
  //객체
  var user = [[${user}]];
 </script>
-<!-- 자바스크립트 인라인 사용 후 -->
+자바스크립트 인라인 사용 후
 <script th:inline="javascript">
  var username = [[${user.username}]];
  var age = [[${user.age}]];
@@ -23,5 +23,12 @@
  //객체
  var user = [[${user}]];
 </script>
+
+자바스크립트 인라인 each
+<script th:inline="javascript">
+ [# th:each="user, stat : ${users}"]
+ var user[[${stat.count}]] = [[${user}]];
+ [/]
+</script>
 </body>
-</html>
+</html> -->
